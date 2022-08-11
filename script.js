@@ -2,11 +2,19 @@ import checkComplete from "./components/checkComplete.js";
 import deleteIcon from "./components/deleteIcon.js";
 const btn =document.querySelector('[data-form-btn]');
 
+const addTask = (event) => {
+    const list = document.querySelector('[data-list]');
+    const task = createTasck(event); 
+    list.appendChild(task);
+}
 const createTasck = (evento)=>{
     evento.preventDefault();
     const input = document.querySelector('[data-form-input]');
+    const calendar = document.querySelector('[data-form-date]');
     const value = input.value;
-    const list = document.querySelector('[data-list]');
+    const date = calendar.value;
+    const dateFormat = moment(date).format("DD/MM/YYYY");//libreria moment
+    console.log(dateFormat);
     const task = document.createElement("li");
     task.classList.add("card")
     input.value = '';
@@ -18,10 +26,14 @@ const createTasck = (evento)=>{
     titleTask.innerText = value;
     taskContent.appendChild(titleTask);
     //task.innerHTML = content;
+    const dateElement = document.createElement("spam");
+    dateElement.innerHTML = dateFormat;
+    console.log(dateElement);
     task.appendChild(taskContent);
+    task.appendChild(dateElement);
     task.appendChild(deleteIcon());
-    list.appendChild(task);
+    return task;
 };
 //arrow functions o funciones anonimas
-btn.addEventListener('click',createTasck);
+btn.addEventListener('click',addTask);
 
