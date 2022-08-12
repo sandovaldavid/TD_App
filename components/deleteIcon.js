@@ -1,12 +1,19 @@
-const deleteIcon = () => {
+import { displayTasks } from "./readTasks.js";
+const deleteIcon = (id) => {
     const i = document.createElement("i");
-    i.classList.add('fas', 'fa-trash-alt','trachIcon', 'icon');
-    i.addEventListener('click', deleteTask);
+    i.classList.add("fas", "fa-trash-alt", "trachIcon", "icon");
+    i.addEventListener("click", () => deleteTask(id));
     return i;
 };
 
-const deleteTask = (event) => {
-    const parent = event.target.parentElement; //accedemo al elemento padre de que contiene el icono
-    parent.remove();
-}
+const deleteTask = (id) => {
+    const li = document.querySelector("[data-list]");
+    const tasks = JSON.parse(localStorage.getItem("tasks"));
+    const index = tasks.findIndex((item) => item.id == id);
+    console.log(index);
+    tasks.splice(index, 1);
+    li.innerHTML = "";
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    displayTasks();
+};
 export default deleteIcon;
