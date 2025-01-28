@@ -38,7 +38,7 @@ git clone https://github.com/sandovaldavid/TD_App.git
 1. Navigate to project directory
 
 ```bash
-cd todo-app
+cd TD_App
 ```
 
 1. Open `index.html` in your browser or use a local server
