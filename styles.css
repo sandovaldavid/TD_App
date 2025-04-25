@@ -1,69 +1,148 @@
+:root {
+	--primary-color: #4285f4;
+	--primary-gradient: linear-gradient(to right, #4285f4, #34a853);
+	--secondary-color: #34a853;
+	--accent-color: #fbbc05;
+	--danger-color: #ea4335;
+	--light-color: #f8f9fa;
+	--dark-color: #202124;
+	--gray-color: #5f6368;
+	--shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	--border-radius: 12px;
+	--transition: all 0.3s ease;
+}
+
 * {
 	margin: 0;
 	padding: 0;
-	font-family: 'Dosis', sans-serif;
+	box-sizing: border-box;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
 }
 
+body {
+	background-color: var(--light-color);
+	color: var(--dark-color);
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Main container */
 main {
-	background-image: linear-gradient(
-		109.6deg,
-		rgba(62, 161, 219, 1) 11.2%,
-		rgba(93, 52, 236, 1) 100.2%
-	);
-	width: 100vw;
-	height: 100vh;
+	background-image: var(--primary-gradient);
+	width: 100%;
+	min-height: 100vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	padding: 20px;
+	flex: 1;
 }
 
-form {
-	width: 100%;
-	justify-content: space-between;
-	align-items: center;
-	display: flex;
-	margin-bottom: 15px;
-}
-
+/* Card container */
 .mainCard {
-	width: 40vw;
-	border-radius: 25px;
+	width: 90%;
+	max-width: 600px;
+	border-radius: var(--border-radius);
 	background-color: #fff;
-	padding: 25px;
+	padding: 30px;
+	box-shadow: var(--shadow);
+	transition: var(--transition);
 }
 
+/* Title and header */
 .title {
 	font-family: 'Dosis', sans-serif;
 	display: flex;
 	justify-content: center;
-	align-content: center;
+	align-items: center;
+	margin-bottom: 25px;
+	gap: 15px;
+}
+
+.title img {
+	width: 32px;
+	height: 32px;
+}
+
+.title h1 {
+	font-size: 1.8rem;
+	font-weight: 600;
+	color: var(--primary-color);
+}
+
+/* Form container and elements */
+.form-container {
+	margin-bottom: 25px;
+}
+
+form {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
 	margin-bottom: 15px;
 }
 
 .inputForm {
-	border: none;
-	padding: 10px;
+	flex: 1;
+	min-width: 150px;
+	padding: 12px 15px;
 	border: 1px solid #eee;
+	border-radius: 6px;
 	outline: none;
-	width: 35%;
+	transition: var(--transition);
+}
+
+.date-input {
+	flex: 1;
+}
+
+.inputForm:focus {
+	border-color: var(--primary-color);
+	box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
 }
 
 .inputForm::placeholder {
-	padding: 0px;
+	color: var(--gray-color);
 }
 
 .btnCreate {
-	padding: 10px 15px;
-	background-image: linear-gradient(
-		109.6deg,
-		rgba(62, 161, 219, 1) 11.2%,
-		rgba(93, 52, 236, 1) 100.2%
-	);
+	padding: 12px 20px;
+	background-image: var(--primary-gradient);
 	border: none;
 	color: #fff;
-	border-radius: 5px;
+	border-radius: 6px;
 	cursor: pointer;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	transition: var(--transition);
+	white-space: nowrap;
+}
+
+.btnCreate:hover {
+	filter: brightness(1.1);
+	transform: translateY(-2px);
+}
+
+.btnCreate:active {
+	transform: translateY(0);
+}
+
+/* Tasks container */
+.tasks-container {
+	position: relative;
+}
+
+.tasks-title {
+	font-size: 1.2rem;
+	margin-bottom: 15px;
+	color: var(--dark-color);
+	font-family: 'Dosis', sans-serif;
+	font-weight: 600;
 }
 
 .cardsList {
@@ -72,62 +151,147 @@ form {
 	flex-direction: column;
 	align-items: center;
 	justify-content: flex-start;
-	overflow-y: scroll;
-	max-height: 60vh;
-	height: 60vh;
+	overflow-y: auto;
+	max-height: 50vh;
+	gap: 10px;
+	list-style: none;
+	padding-right: 5px;
 }
 
+.cardsList::-webkit-scrollbar {
+	width: 6px;
+}
+
+.cardsList::-webkit-scrollbar-track {
+	background: #f1f1f1;
+	border-radius: 10px;
+}
+
+.cardsList::-webkit-scrollbar-thumb {
+	background: var(--primary-color);
+	border-radius: 10px;
+}
+
+/* Individual task card */
 .card {
-	width: 90%;
+	width: 100%;
 	padding: 15px;
-	box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.16);
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	align-content: center;
-	margin: 5px 0px;
+	align-items: center;
+	margin: 5px 0;
 	position: relative;
+	background-color: white;
+	transition: var(--transition);
+}
+
+.card:hover {
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+	transform: translateY(-2px);
+}
+
+.card > div {
+	display: flex;
+	align-items: center;
+	gap: 10px;
 }
 
 .task {
-	padding: 10px;
+	padding: 5px 0;
+	font-size: 1rem;
 }
 
+/* Icons */
 .icon {
 	cursor: pointer;
+	font-size: 1.2rem;
+	padding: 8px;
+	border-radius: 50%;
+	transition: var(--transition);
 }
 
 .icon:hover {
-	color: rgba(62, 161, 219, 1);
+	background-color: rgba(66, 133, 244, 0.1);
+	color: var(--primary-color);
 }
 
 .completeIcon {
-	color: rgba(62, 161, 219, 1);
+	color: var(--secondary-color);
+}
+
+.trashIcon {
+	color: var(--gray-color);
 }
 
 .trashIcon:hover {
-	color: #f00;
+	color: var(--danger-color);
+	background-color: rgba(234, 67, 53, 0.1);
 }
 
-.deleteConfirmationPop {
-	position: relative;
-	background-color: rgba(255, 255, 255);
-	z-index: 99;
-	width: 100%;
-	top: -100px;
-	left: 0;
-}
-
-.deleteSpace {
-	position: relative;
-	width: 30%;
-}
-
-.noTasks {
-	font-size: 48px;
-}
-
+/* Date header */
 .date {
 	width: 100%;
+	padding: 10px 5px;
+	margin: 10px 0 5px 0;
+	font-weight: 600;
+	color: var(--primary-color);
+	border-bottom: 1px solid #eee;
+	font-family: 'Dosis', sans-serif;
+}
+
+/* Empty state */
+.empty-state {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 15px;
+	padding: 40px 0;
+	color: var(--gray-color);
+	text-align: center;
+}
+
+.empty-icon {
+	font-size: 3rem;
+	color: #e0e0e0;
+}
+
+/* Footer */
+footer {
 	padding: 15px;
+	text-align: center;
+	background-color: var(--light-color);
+	color: var(--gray-color);
+}
+
+footer a {
+	color: var(--primary-color);
+	text-decoration: none;
+}
+
+footer a:hover {
+	text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+	form {
+		flex-direction: column;
+	}
+
+	.mainCard {
+		padding: 20px;
+	}
+
+	.inputForm {
+		width: 100%;
+	}
+
+	.btnCreate {
+		width: 100%;
+		justify-content: center;
+	}
 }
