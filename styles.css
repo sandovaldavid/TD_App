@@ -380,6 +380,192 @@ footer a:hover {
 	}
 }
 
+/* Tablet adjustments */
+@media (min-width: 481px) and (max-width: 1024px) {
+	.mainCard {
+		width: 85%;
+		max-width: 700px;
+		padding: 25px;
+	}
+
+	.title h1 {
+		font-size: 2rem;
+	}
+
+	.title img {
+		width: 38px;
+		height: 38px;
+	}
+
+	/* Mejorar layout del form en tablets */
+	form {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: auto auto;
+		gap: 15px;
+	}
+
+	.inputForm {
+		font-size: 1.05rem;
+		padding: 14px;
+	}
+
+	.btnCreate {
+		grid-column: span 2;
+		padding: 14px;
+		font-size: 1.05rem;
+	}
+
+	/* Optimizar la lista de tareas */
+	.cardsList {
+		max-height: 60vh;
+	}
+
+	.card {
+		padding: 16px;
+		gap: 15px;
+	}
+
+	.task {
+		font-size: 1.05rem;
+	}
+
+	/* Mejorar la visualización de fechas */
+	.date {
+		font-size: 1.2rem;
+		padding: 12px 8px;
+	}
+
+	/* Optimizar para tablets en landscape */
+	@media (orientation: landscape) {
+		.mainCard {
+			display: grid;
+			grid-template-columns: 350px 1fr;
+			grid-template-areas:
+				'title title'
+				'form tasks';
+			align-items: start;
+			gap: 20px;
+			max-width: 900px;
+		}
+
+		.title {
+			grid-area: title;
+		}
+
+		.form-container {
+			grid-area: form;
+			margin-bottom: 0;
+		}
+
+		.tasks-container {
+			grid-area: tasks;
+			border-left: 1px solid #eee;
+			padding-left: 20px;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.cardsList {
+			max-height: 65vh;
+		}
+	}
+}
+
+/* Estilos para el modo landscape específico con clases JS */
+.landscape-mode {
+	display: grid !important;
+	grid-template-columns: 350px 1fr !important;
+	grid-template-areas:
+		'title title'
+		'form tasks' !important;
+	align-items: start;
+	gap: 20px;
+	max-width: 900px;
+}
+
+.landscape-mode .title {
+	grid-area: title;
+}
+
+.landscape-mode .form-container {
+	grid-area: form;
+	margin-bottom: 0;
+}
+
+.landscape-mode .tasks-container {
+	grid-area: tasks;
+	border-left: 1px solid #eee;
+	padding-left: 20px;
+	max-height: 75vh;
+	overflow-y: auto;
+}
+
+.landscape-mode form {
+	display: flex;
+	flex-direction: column;
+}
+
+.landscape-mode .cardsList {
+	max-height: 65vh;
+}
+
+/* Mejoras adicionales para tablets */
+@media (min-width: 481px) and (max-width: 1024px) {
+	/* Aprovechar mejor el espacio para tarjetas de tareas */
+	.card {
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		grid-template-areas: 'check task actions' 'empty date empty';
+		gap: 10px;
+		align-items: center;
+	}
+
+	.task-content {
+		grid-area: task;
+		min-width: 0;
+	}
+
+	.task-actions {
+		grid-area: actions;
+	}
+
+	.task-date {
+		grid-area: date;
+		margin-left: 35px;
+	}
+
+	/* Pantallas de tablet más grandes */
+	@media (min-width: 768px) {
+		.mainCard {
+			padding: 30px;
+		}
+
+		.title h1 {
+			font-size: 2.2rem;
+		}
+
+		.title img {
+			width: 42px;
+			height: 42px;
+		}
+
+		.tasks-title {
+			font-size: 1.4rem;
+		}
+
+		/* Hacer que los botones sean más grandes para pantallas táctiles */
+		.icon {
+			min-width: 40px;
+			min-height: 40px;
+			font-size: 1.3rem;
+		}
+	}
+}
+
 .ripple {
 	position: absolute;
 	background: rgba(255, 255, 255, 0.3);
