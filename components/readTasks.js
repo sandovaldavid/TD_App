@@ -4,7 +4,20 @@ import dateElement from './dateElement.js';
 
 export const displayTasks = () => {
 	const list = document.querySelector('[data-list]');
+	const emptyState = document.getElementById('emptyState');
 	const tasksList = JSON.parse(localStorage.getItem('tasks')) || [];
+
+	// Clear the list
+	list.innerHTML = '';
+
+	// Show/hide empty state
+	if (tasksList.length === 0) {
+		emptyState.style.display = 'flex';
+		return;
+	} else {
+		emptyState.style.display = 'none';
+	}
+
 	const dates = uniqueDates(tasksList);
 	orderDates(dates);
 	dates.forEach((date) => {
