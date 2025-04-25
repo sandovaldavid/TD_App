@@ -4,11 +4,11 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>TODO App</title>
+		<title>ToDo App | Task Manager</title>
 		<link rel="icon" type="image/png" href="./assets/rocket.svg" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Dosis&family=Open+Sans&family=Parisienne&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;600&family=Open+Sans:wght@400;600&family=Parisienne&display=swap"
 			rel="stylesheet" />
 		<link
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -18,31 +18,51 @@
 	<body>
 		<main>
 			<div class="mainCard">
-				<div class="title"><img src="./assets/rocket.svg" /></div>
-				<div>
+				<div class="title">
+					<img src="./assets/rocket.svg" alt="Task Rocket" />
+					<h1>Task Manager</h1>
+				</div>
+				<div class="form-container">
 					<form action="">
 						<input
 							type="text"
 							name="task"
-							placeholder="Nombre de la tarea"
+							placeholder="Task name"
 							class="inputForm"
 							autocomplete="off"
 							data-form-input />
-						<input type="datetime-local" data-form-date placeholder="YYYY/MM/DD" />
+						<input
+							type="datetime-local"
+							data-form-date
+							placeholder="YYYY/MM/DD"
+							class="inputForm date-input" />
 						<button type="submit" class="btnCreate" data-form-btn>
-							Agregar <i class="fas fa-plus-circle"></i>
+							Add <i class="fas fa-plus-circle"></i>
 						</button>
 					</form>
 				</div>
-				<ul class="cardsList" data-list></ul>
+				<div class="tasks-container">
+					<h2 class="tasks-title">My Tasks</h2>
+					<ul class="cardsList" data-list></ul>
+					<div class="empty-state" id="emptyState">
+						<i class="far fa-clipboard empty-icon"></i>
+						<p>No tasks yet. Add your first task!</p>
+					</div>
+				</div>
 			</div>
 		</main>
+		<footer>
+			<p>
+				Created by
+				<a href="https://github.com/sandovaldavid" target="_blank">@sandovaldavid</a>
+			</p>
+		</footer>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"
+			integrity="sha512-UNM1njAgOFUa74Z0bADwAq8gbTcqZC8Ej4xPSzpnh0l6KMevwvkBvbldF9uR++qKeJ+MOZHRjV1HZjoRvjDfNQ=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+		<script type="module" src="script.js"></script>
 	</body>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"
-		integrity="sha512-UNM1njAgOFUa74Z0bADwAq8gbTcqZC8Ej4xPSzpnh0l6KMevwvkBvbldF9uR++qKeJ+MOZHRjV1HZjoRvjDfNQ=="
-		crossorigin="anonymous"
-		referrerpolicy="no-referrer"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-	<script type="module" src="script.js"></script>
 </html>
