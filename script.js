@@ -11,6 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	handleOrientationChange();
 
 	document.querySelector('[data-form-input]').focus();
+
+	if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.register('./service-worker.js')
+			.then(reg => console.log('Service Worker registrado con éxito:', reg.scope))
+			.catch(err => console.error('Error al registrar el Service Worker:', err));
+	}
 });
 
 function handleOrientationChange() {
