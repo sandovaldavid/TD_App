@@ -173,20 +173,25 @@ form {
 	border-radius: 10px;
 }
 
-/* Individual task card */
+/* Card base styles */
 .card {
 	width: 100%;
 	padding: 15px;
 	border-radius: 8px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	margin: 5px 0;
 	position: relative;
 	background-color: white;
 	transition: var(--transition);
+	margin: 5px 0;
+
+	/* Grid layout para todos los dispositivos */
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-template-areas:
+		'content actions'
+		'date actions';
+	gap: 8px;
+	align-items: center;
 }
 
 .card:hover {
@@ -194,16 +199,47 @@ form {
 	transform: translateY(-2px);
 }
 
-.card > div {
+/* Task content */
+.task-content {
+	grid-area: content;
 	display: flex;
 	align-items: center;
 	gap: 10px;
+	min-width: 0;
 }
 
+/* Task text */
 .task {
 	padding: 5px 0;
 	font-size: 1rem;
 	word-break: break-word;
+}
+
+/* Date display */
+.task-date {
+	grid-area: date;
+	font-size: 0.85rem;
+	color: var(--gray-color);
+	margin-left: 35px;
+}
+
+/* Actions container */
+.task-actions {
+	grid-area: actions;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+/* Date header */
+.date {
+	width: 100%;
+	padding: 10px 5px;
+	margin: 10px 0 5px 0;
+	font-weight: 600;
+	color: var(--primary-color);
+	border-bottom: 1px solid #eee;
+	font-family: 'Dosis', sans-serif;
 }
 
 /* Icons */
@@ -233,15 +269,10 @@ form {
 	background-color: rgba(234, 67, 53, 0.1);
 }
 
-/* Date header */
-.date {
-	width: 100%;
-	padding: 10px 5px;
-	margin: 10px 0 5px 0;
-	font-weight: 600;
-	color: var(--primary-color);
-	border-bottom: 1px solid #eee;
-	font-family: 'Dosis', sans-serif;
+/* Completed task style */
+.task-completed .task {
+	text-decoration: line-through;
+	color: var(--gray-color);
 }
 
 /* Empty state */
@@ -278,15 +309,160 @@ footer a:hover {
 	text-decoration: underline;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-	form {
-		flex-direction: column;
-	}
+/* Feedback notifications */
+.task-added-feedback,
+.task-completed-feedback,
+.task-uncompleted-feedback {
+	position: fixed;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 10px 20px;
+	border-radius: 50px;
+	box-shadow: var(--shadow);
+	z-index: 100;
+	animation: slideUp 0.3s ease;
+	font-weight: 600;
+	color: white;
+}
 
+.task-added-feedback {
+	background-color: var(--secondary-color);
+}
+
+.task-completed-feedback {
+	background-color: var(--secondary-color);
+}
+
+.task-uncompleted-feedback {
+	background-color: var(--accent-color);
+}
+
+/* Delete feedback específico (tiene animación diferente) */
+.task-deleted-feedback {
+	position: fixed;
+	bottom: 30px;
+	left: 50%;
+	transform: translateX(-50%) translateY(100px);
+	background-color: var(--danger-color);
+	color: white;
+	padding: 12px 25px;
+	border-radius: 50px;
+	box-shadow: 0 4px 12px rgba(234, 67, 53, 0.25);
+	z-index: 1000;
+	font-weight: 600;
+	opacity: 0;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	pointer-events: none;
+}
+
+.task-deleted-feedback i {
+	font-size: 1.1rem;
+}
+
+.feedback-visible {
+	opacity: 1;
+	transform: translateX(-50%) translateY(0);
+}
+
+.fade-out {
+	opacity: 0 !important;
+	transform: translateX(-50%) translateY(20px) !important;
+}
+
+/* Task highlight animation */
+.task-highlight {
+	animation: highlight 1s ease;
+}
+
+/* Accessibility */
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* Animations */
+@keyframes slideUp {
+	from {
+		transform: translate(-50%, 20px);
+		opacity: 0;
+	}
+	to {
+		transform: translate(-50%, 0);
+		opacity: 1;
+	}
+}
+
+@keyframes highlight {
+	0% {
+		background-color: rgba(251, 188, 5, 0.2);
+	}
+	100% {
+		background-color: white;
+	}
+}
+
+@keyframes ripple {
+	to {
+		transform: scale(4);
+		opacity: 0;
+	}
+}
+
+@keyframes shake {
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+	20%,
+	60% {
+		transform: translateX(-5px);
+	}
+	40%,
+	80% {
+		transform: translateX(5px);
+	}
+}
+
+/* Ripple effect */
+.ripple {
+	position: absolute;
+	background: rgba(255, 255, 255, 0.3);
+	border-radius: 50%;
+	transform: scale(0);
+	animation: ripple 0.6s linear;
+	pointer-events: none;
+	width: 100px;
+	height: 100px;
+}
+
+/* Error feedback */
+.input-error {
+	border-color: var(--danger-color) !important;
+	animation: shake 0.5s linear;
+}
+
+/* RESPONSIVE LAYOUTS */
+
+/* Responsive adjustments - Tablet y móvil */
+@media (max-width: 768px) {
 	.mainCard {
 		padding: 20px;
 		width: 95%;
+	}
+
+	form {
+		flex-direction: column;
 	}
 
 	.inputForm {
@@ -297,9 +473,17 @@ footer a:hover {
 		width: 100%;
 		justify-content: center;
 	}
+
+	/* Notificaciones más compactas */
+	.task-deleted-feedback {
+		width: 90%;
+		max-width: 350px;
+		text-align: center;
+		justify-content: center;
+	}
 }
 
-/* Mobile adjustments */
+/* Mobile specific adjustments */
 @media (max-width: 480px) {
 	* {
 		font-size: 14px;
@@ -313,7 +497,6 @@ footer a:hover {
 		padding: 15px;
 		width: 100%;
 		border-radius: 10px;
-		min-height: 80vh;
 	}
 
 	.form-container {
@@ -328,40 +511,17 @@ footer a:hover {
 		padding: 10px 15px;
 	}
 
-	.card {
-		padding: 12px;
-		flex-wrap: wrap;
-	}
-
-	.card > div {
-		flex: 1 1 60%;
-		min-width: 60%;
-	}
-
-	.card > span {
-		font-size: 0.8rem;
-		margin-top: 5px;
-		text-align: left;
-		flex: 1 1 25%;
-		order: 3;
-	}
-
-	.card .icon {
-		flex: 0 0 auto;
-		padding: 6px;
-		font-size: 1rem;
-	}
-
 	.cardsList {
 		max-height: 60vh;
 	}
 
-	.icon {
-		min-width: 35px;
-		min-height: 35px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+	/* Ajustes para cards en móvil */
+	.card {
+		padding: 12px;
+	}
+
+	.task-date {
+		font-size: 0.75rem;
 	}
 
 	.date {
@@ -369,10 +529,28 @@ footer a:hover {
 		padding: 8px 5px;
 	}
 
-	main {
-		padding: 2rem;
+	/* Botones más grandes para touch */
+	.icon {
+		min-width: 44px;
+		min-height: 44px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
+	main {
+		padding: 10px;
+	}
+
+	/* Soporte iOS */
+	@supports (-webkit-touch-callout: none) {
+		body,
+		main {
+			min-height: -webkit-fill-available;
+		}
+	}
+
+	/* Landscape mobile */
 	@media (orientation: landscape) {
 		.cardsList {
 			max-height: 40vh;
@@ -380,7 +558,7 @@ footer a:hover {
 	}
 }
 
-/* Tablet adjustments */
+/* Tablet specific adjustments */
 @media (min-width: 481px) and (max-width: 1024px) {
 	.mainCard {
 		width: 85%;
@@ -416,27 +594,51 @@ footer a:hover {
 		font-size: 1.05rem;
 	}
 
-	/* Optimizar la lista de tareas */
 	.cardsList {
 		max-height: 60vh;
 	}
 
 	.card {
 		padding: 16px;
-		gap: 15px;
+		gap: 10px;
 	}
 
 	.task {
 		font-size: 1.05rem;
 	}
 
-	/* Mejorar la visualización de fechas */
 	.date {
 		font-size: 1.2rem;
 		padding: 12px 8px;
 	}
 
-	/* Optimizar para tablets en landscape */
+	/* Tablets más grandes */
+	@media (min-width: 768px) {
+		.mainCard {
+			padding: 30px;
+		}
+
+		.title h1 {
+			font-size: 2.2rem;
+		}
+
+		.title img {
+			width: 42px;
+			height: 42px;
+		}
+
+		.tasks-title {
+			font-size: 1.4rem;
+		}
+
+		.icon {
+			min-width: 40px;
+			min-height: 40px;
+			font-size: 1.3rem;
+		}
+	}
+
+	/* Tablet landscape */
 	@media (orientation: landscape) {
 		.mainCard {
 			display: grid;
@@ -462,6 +664,8 @@ footer a:hover {
 			grid-area: tasks;
 			border-left: 1px solid #eee;
 			padding-left: 20px;
+			max-height: 75vh;
+			overflow-y: auto;
 		}
 
 		form {
@@ -475,242 +679,14 @@ footer a:hover {
 	}
 }
 
-/* Estilos para el modo landscape específico con clases JS */
+/* Javascript controlled landscape mode */
 .landscape-mode {
-	display: grid !important;
-	grid-template-columns: 350px 1fr !important;
+	display: grid;
+	grid-template-columns: 350px 1fr;
 	grid-template-areas:
 		'title title'
-		'form tasks' !important;
+		'form tasks';
 	align-items: start;
 	gap: 20px;
 	max-width: 900px;
-}
-
-.landscape-mode .title {
-	grid-area: title;
-}
-
-.landscape-mode .form-container {
-	grid-area: form;
-	margin-bottom: 0;
-}
-
-.landscape-mode .tasks-container {
-	grid-area: tasks;
-	border-left: 1px solid #eee;
-	padding-left: 20px;
-	max-height: 75vh;
-	overflow-y: auto;
-}
-
-.landscape-mode form {
-	display: flex;
-	flex-direction: column;
-}
-
-.landscape-mode .cardsList {
-	max-height: 65vh;
-}
-
-/* Mejoras adicionales para tablets */
-@media (min-width: 481px) and (max-width: 1024px) {
-	/* Aprovechar mejor el espacio para tarjetas de tareas */
-	.card {
-		display: grid;
-		grid-template-columns: auto 1fr auto;
-		grid-template-areas: 'check task actions' 'empty date empty';
-		gap: 10px;
-		align-items: center;
-	}
-
-	.task-content {
-		grid-area: task;
-		min-width: 0;
-	}
-
-	.task-actions {
-		grid-area: actions;
-	}
-
-	.task-date {
-		grid-area: date;
-		margin-left: 35px;
-	}
-
-	/* Pantallas de tablet más grandes */
-	@media (min-width: 768px) {
-		.mainCard {
-			padding: 30px;
-		}
-
-		.title h1 {
-			font-size: 2.2rem;
-		}
-
-		.title img {
-			width: 42px;
-			height: 42px;
-		}
-
-		.tasks-title {
-			font-size: 1.4rem;
-		}
-
-		/* Hacer que los botones sean más grandes para pantallas táctiles */
-		.icon {
-			min-width: 40px;
-			min-height: 40px;
-			font-size: 1.3rem;
-		}
-	}
-}
-
-.ripple {
-	position: absolute;
-	background: rgba(255, 255, 255, 0.3);
-	border-radius: 50%;
-	transform: scale(0);
-	animation: ripple 0.6s linear;
-	pointer-events: none;
-	width: 100px;
-	height: 100px;
-}
-
-@keyframes ripple {
-	to {
-		transform: scale(4);
-		opacity: 0;
-	}
-}
-
-.input-error {
-	border-color: var(--danger-color) !important;
-	animation: shake 0.5s linear;
-}
-
-@keyframes shake {
-	0%,
-	100% {
-		transform: translateX(0);
-	}
-	20%,
-	60% {
-		transform: translateX(-5px);
-	}
-	40%,
-	80% {
-		transform: translateX(5px);
-	}
-}
-
-/* Feedback de tarea agregada */
-.task-added-feedback {
-	position: fixed;
-	bottom: 20px;
-	left: 50%;
-	transform: translateX(-50%);
-	background-color: var(--secondary-color);
-	color: white;
-	padding: 10px 20px;
-	border-radius: 50px;
-	box-shadow: var(--shadow);
-	z-index: 100;
-	animation: slideUp 0.3s ease;
-	font-weight: 600;
-}
-
-.fade-out {
-	opacity: 0;
-	transition: opacity 0.3s ease;
-}
-
-@keyframes slideUp {
-	from {
-		transform: translate(-50%, 20px);
-		opacity: 0;
-	}
-	to {
-		transform: translate(-50%, 0);
-		opacity: 1;
-	}
-}
-
-.task-content {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	flex: 1;
-	min-width: 0;
-}
-
-.task-date {
-	font-size: 0.85rem;
-	color: var(--gray-color);
-	margin-right: 10px;
-}
-
-.task-actions {
-	display: flex;
-	align-items: center;
-}
-
-/* Estilo para tareas completadas */
-.task-completed .task {
-	text-decoration: line-through;
-	color: var(--gray-color);
-}
-
-.task-highlight {
-	animation: highlight 1s ease;
-}
-
-@keyframes highlight {
-	0% {
-		background-color: rgba(251, 188, 5, 0.2);
-	}
-	100% {
-		background-color: white;
-	}
-}
-
-.visually-hidden {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-	border: 0;
-}
-
-@media (max-width: 480px) {
-	.task-date {
-		font-size: 0.75rem;
-		width: 100%;
-		margin-top: 5px;
-		text-align: left;
-		margin-left: 35px;
-	}
-
-	.card {
-		flex-wrap: wrap;
-	}
-
-	.card .icon {
-		min-width: 44px;
-		min-height: 44px;
-	}
-
-	@supports (-webkit-touch-callout: none) {
-		body {
-			min-height: -webkit-fill-available;
-		}
-
-		main {
-			min-height: -webkit-fill-available;
-		}
-	}
 }
