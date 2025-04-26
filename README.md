@@ -1,6 +1,7 @@
 # 📝 Todo App
 
-A modern task management application built with vanilla JavaScript that allows users to create, organize, and track daily tasks with dates.
+A modern task management application built with vanilla JavaScript that allows users to create,
+organize, and track daily tasks with dates.
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Version](https://img.shields.io/badge/version-1.1.0-green.svg)
@@ -14,19 +15,21 @@ A modern task management application built with vanilla JavaScript that allows u
 ## ✨ Features
 
 ### Core Functionality
-- ➕ Add tasks with dates and times
-- ✅ Mark tasks as complete with visual feedback
-- 🗑️ Delete tasks with confirmation
-- 📅 Organize tasks chronologically by date
-- 💾 Local storage persistence
-- 📱 Fully responsive design for all devices
+
+-   ➕ Add tasks with dates and times
+-   ✅ Mark tasks as complete with visual feedback
+-   🗑️ Delete tasks with confirmation
+-   📅 Organize tasks chronologically by date
+-   💾 Local storage persistence
+-   📱 Fully responsive design for all devices
 
 ### New in v1.1.0
-- 🌐 **Progressive Web App (PWA)** - Install on home screen and use offline
-- 🔔 **Visual Feedback** - Notifications when tasks are added, completed, or deleted
-- ♿ **Accessibility Improvements** - Screen reader support and keyboard navigation
-- 🖼️ **Enhanced UI/UX** - Improved layouts for mobile and tablet devices
-- 🔍 **SEO & Sharing** - Better metadata and social media preview images
+
+-   🌐 **Progressive Web App (PWA)** - Install on home screen and use offline
+-   🔔 **Visual Feedback** - Notifications when tasks are added, completed, or deleted
+-   ♿ **Accessibility Improvements** - Screen reader support and keyboard navigation
+-   🖼️ **Enhanced UI/UX** - Improved layouts for mobile and tablet devices
+-   🔍 **SEO & Sharing** - Better metadata and social media preview images
 
 ## 🚀 Demo
 
@@ -53,12 +56,12 @@ Visit the live demo: [Todo App](https://td-app.devprojects.tech)
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
 </p>
 
-- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **Libraries**: 
-  - [Moment.js](https://momentjs.com/) - Date handling and formatting
-  - [UUID](https://github.com/uuidjs/uuid) - Unique ID generation
-  - [Font Awesome](https://fontawesome.com/) - Icons and visual elements
-- **PWA**: Service Worker for offline functionality
+-   **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+-   **Libraries**:
+    -   [Moment.js](https://momentjs.com/) - Date handling and formatting
+    -   [UUID](https://github.com/uuidjs/uuid) - Unique ID generation
+    -   [Font Awesome](https://fontawesome.com/) - Icons and visual elements
+-   **PWA**: Service Worker for offline functionality
 
 ## 📦 Installation
 
@@ -78,12 +81,12 @@ cd TD_App
 
 ## 💻 Usage
 
-| Action | Description |
-|--------|-------------|
-| Add Task | Enter task name and select date, then click "Add" |
-| Complete Task | Click the checkbox icon next to the task |
-| Delete Task | Click the trash icon to remove the task |
-| Install App | Click "Add to Home Screen" in your browser menu (PWA feature) |
+| Action        | Description                                                   |
+| ------------- | ------------------------------------------------------------- |
+| Add Task      | Enter task name and select date, then click "Add"             |
+| Complete Task | Click the checkbox icon next to the task                      |
+| Delete Task   | Click the trash icon to remove the task                       |
+| Install App   | Click "Add to Home Screen" in your browser menu (PWA feature) |
 
 ## 🏗️ Project Structure
 
@@ -104,8 +107,10 @@ todo-app/
 
 ## 📝 Release Notes
 
-- [v1.1.0](https://github.com/sandovaldavid/TD_App/releases/tag/v1.1.0) - Current version with PWA support and UI improvements
-- [v1.0.0](https://github.com/sandovaldavid/TD_App/releases/tag/v1.0.0) - Initial release with core functionality
+-   [v1.1.0](https://github.com/sandovaldavid/TD_App/releases/tag/v1.1.0) - Current version with PWA
+    support and UI improvements
+-   [v1.0.0](https://github.com/sandovaldavid/TD_App/releases/tag/v1.0.0) - Initial release with
+    core functionality
 
 ## 🤝 Contributing
 
@@ -125,11 +130,12 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 🙏 Acknowledgments
 
-- [Moment.js](https://momentjs.com/) for simplifying date manipulation
-- [Font Awesome](https://fontawesome.com/) for the beautiful icons
-- [UUID](https://github.com/uuidjs/uuid) for unique ID generation
+-   [Moment.js](https://momentjs.com/) for simplifying date manipulation
+-   [Font Awesome](https://fontawesome.com/) for the beautiful icons
+-   [UUID](https://github.com/uuidjs/uuid) for unique ID generation
 
 ---
+
 ## 👨‍💻 Authors
 
 ### [David Sandoval](https://github.com/sandovaldavid)
@@ -140,9 +146,11 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 -   📧 Email: [contact@devsandoval.me](mailto:contact@devsandoval.me)
 
 ---
-*⭐️ If you found this project helpful, please consider giving it a star!*
+
+_⭐️ If you found this project helpful, please consider giving it a star!_
 
 ---
+
 <p align="center">
 Made by <a href="https://devsandoval.me/">@sandovaldavid</a>
 </p>
