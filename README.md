@@ -4,7 +4,7 @@ A modern task management application built with vanilla JavaScript that allows u
 organize, and track daily tasks with dates.
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-1.1.0-green.svg)
+![Version](https://img.shields.io/badge/version-1.2.0-green.svg)
 [![PWA](https://img.shields.io/badge/PWA-Ready-orange.svg)](https://td-app.devprojects.tech)
 [![Responsive](https://img.shields.io/badge/Responsive-Yes-purple.svg)](https://td-app.devprojects.tech)
 
