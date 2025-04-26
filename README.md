@@ -107,6 +107,8 @@ todo-app/
 
 ## 📝 Release Notes
 
+-   [v1.2.0](https://github.com/sandovaldavid/TD_App/releases/tag/v1.2.0) - New footer Ui
+
 -   [v1.1.0](https://github.com/sandovaldavid/TD_App/releases/tag/v1.1.0) - Current version with PWA
     support and UI improvements
 -   [v1.0.0](https://github.com/sandovaldavid/TD_App/releases/tag/v1.0.0) - Initial release with
