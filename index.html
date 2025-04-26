@@ -1,48 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TODO App</title>
-    <link rel="icon" type="image/png" href="./assets/rocket.svg" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Dosis&family=Open+Sans&family=Parisienne&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <main>
-      <div class="mainCard">
-        <div class="title"><img src="./assets/rocket.svg" /></div>
-        <div>
-          <form action="">
-            <input
-              type="text"
-              name="task"
-              placeholder="Nombre de la tarea"
-              class="inputForm"
-              autocomplete="off"
-              data-form-input
-            />
-            <input type="datetime-local" data-form-date placeholder="YYYY/MM/DD">
-            <button type="submit" class="btnCreate" data-form-btn>
-              Agregar <i class="fas fa-plus-circle"></i>
-            </button>
-          </form>
-        </div>
-        <ul class="cardsList" data-list>
-        </ul>
-      </div>
-    </main>
-  </body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js" integrity="sha512-UNM1njAgOFUa74Z0bADwAq8gbTcqZC8Ej4xPSzpnh0l6KMevwvkBvbldF9uR++qKeJ+MOZHRjV1HZjoRvjDfNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-  <script type="module" src="script.js"></script>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- Meta básica -->
+		<title>ToDo App | Task Manager</title>
+		<meta
+			name="description"
+			content="Organiza tus tareas diarias con esta aplicación minimalista y educativa. Gestiona tu tiempo de forma eficiente y mejora tu productividad." />
+
+		<!-- Canonical -->
+		<link rel="canonical" href="https://td-app.devprojects.tech/" />
+
+		<!-- Open Graph (Facebook, Instagram, WhatsApp, LinkedIn) -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="ToDo App | Organiza tus tareas de forma intuitiva" />
+		<meta
+			property="og:description"
+			content="Gestiona tus actividades diarias con esta aplicación minimalista. Aumenta tu productividad y nunca olvides una tarea importante." />
+		<meta property="og:url" content="https://td-app.devprojects.tech/" />
+		<meta
+			property="og:image"
+			content="https://td-app.devprojects.tech/assets/og/og-to-do-app.png" />
+		<meta property="og:site_name" content="ToDo App" />
+		<meta property="og:locale" content="es_ES" />
+
+		<!-- Twitter Cards (funciona también para X y Telegram) -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="ToDo App | Gestión de tareas minimalista" />
+		<meta
+			name="twitter:description"
+			content="Aplicación educativa para organizar tus tareas diarias. Interfaz intuitiva y fácil de usar." />
+		<meta
+			name="twitter:image"
+			content="https://td-app.devprojects.tech/assets/og/og-to-do-app.png" />
+		<meta name="twitter:site" content="@dev_sandoval" />
+		<meta name="twitter:creator" content="@dev_sandoval" />
+
+		<!-- Extra opcionales para LinkedIn -->
+		<meta name="author" content="David Sandoval" />
+		<meta name="publisher" content="https://td-app.devprojects.tech/" />
+
+		<!-- Etiquetas que WhatsApp y Telegram usan -->
+		<meta property="og:title" content="ToDo App | Tu gestor de tareas minimalista" />
+		<meta
+			property="og:description"
+			content="Organiza tus actividades diarias de forma sencilla y efectiva. Diseño intuitivo y educativo para mejorar tu productividad." />
+		<meta
+			property="og:image"
+			content="https://td-app.devprojects.tech/assets/og/og-to-do-app.png" />
+		<meta property="og:url" content="https://td-app.devprojects.tech/" />
+
+		<!-- Theme Color and Color Scheme -->
+		<meta name="theme-color" content="#4285f4" />
+		<meta name="color-scheme" content="light" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+		<!-- Favicon and App Icons -->
+		<link rel="icon" href="./assets/favicon.ico" />
+		<link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="./assets/icons/favicon-16x16.png" />
+		<link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png" />
+		<link rel="mask-icon" href="./assets/rocket.svg" color="#4285f4" />
+
+		<!-- Web App Manifest -->
+		<link rel="manifest" href="./manifest.json" />
+
+		<!-- Fonts and Styles -->
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;600&family=Open+Sans:wght@400;600&family=Parisienne&display=swap"
+			rel="stylesheet" />
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+			rel="stylesheet" />
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<main>
+			<div class="mainCard">
+				<div class="title">
+					<img src="./assets/rocket.svg" alt="Task Rocket" />
+					<h1>Task Manager</h1>
+				</div>
+				<div class="form-container">
+					<form action="">
+						<input
+							type="text"
+							name="task"
+							placeholder="Task name"
+							class="inputForm"
+							autocomplete="off"
+							data-form-input />
+						<input
+							type="datetime-local"
+							data-form-date
+							placeholder="YYYY/MM/DD"
+							class="inputForm date-input" />
+						<button type="submit" class="btnCreate" data-form-btn>
+							Add <i class="fas fa-plus-circle"></i>
+						</button>
+					</form>
+				</div>
+				<div class="tasks-container">
+					<h2 class="tasks-title">My Tasks</h2>
+					<ul class="cardsList" data-list></ul>
+					<div class="empty-state" id="emptyState">
+						<i class="far fa-clipboard empty-icon"></i>
+						<p>No tasks yet. Add your first task!</p>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<p>
+				Created by
+				<a href="https://github.com/sandovaldavid" target="_blank">@sandovaldavid</a>
+			</p>
+		</footer>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"
+			integrity="sha512-UNM1njAgOFUa74Z0bADwAq8gbTcqZC8Ej4xPSzpnh0l6KMevwvkBvbldF9uR++qKeJ+MOZHRjV1HZjoRvjDfNQ=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+		<script type="module" src="script.js"></script>
+	</body>
 </html>
