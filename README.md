@@ -4,7 +4,7 @@ A modern task management application built with vanilla JavaScript that allows u
 organize, and track daily tasks with dates.
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-1.1.0-green.svg)
+![Version](https://img.shields.io/badge/version-1.2.0-green.svg)
 [![PWA](https://img.shields.io/badge/PWA-Ready-orange.svg)](https://td-app.devprojects.tech)
 [![Responsive](https://img.shields.io/badge/Responsive-Yes-purple.svg)](https://td-app.devprojects.tech)
 
@@ -106,6 +106,8 @@ todo-app/
 ```
 
 ## 📝 Release Notes
+
+-   [v1.2.0](https://github.com/sandovaldavid/TD_App/releases/tag/v1.2.0) - New footer Ui
 
 -   [v1.1.0](https://github.com/sandovaldavid/TD_App/releases/tag/v1.1.0) - Current version with PWA
     support and UI improvements
